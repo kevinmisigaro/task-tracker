@@ -27,4 +27,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
     Route::get('/employees', [UserController::class, 'index']);
     Route::get('/tasks',[TaskController::class,'index']);
+    Route::get('/logout',[AuthController::class, 'logout']);
 });
