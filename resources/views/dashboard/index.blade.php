@@ -8,7 +8,7 @@
       <!-- Content Row -->
       <div class="row">
 
-        <!-- Earnings (Monthly) Card Example -->
+        <!-- Employees -->
         <div class="col-xl-3 col-md-6 mb-4">
           <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
@@ -16,7 +16,70 @@
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Employees</div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    {{ $employees }}
+                    {{ count($employees) }}
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tasks completed -->
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                    Completed tasks
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{ count(\App\Models\Task::where('status', 3)->get()) }}
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tasks pending -->
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                    In progress tasks
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{ count(\App\Models\Task::where('status', 1)->get()) }}
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tasks overdue -->
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                    Overdue tasks
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{ count(\App\Models\Task::where('status', 2)->get()) }}
                   </div>
                 </div>
                 <div class="col-auto">

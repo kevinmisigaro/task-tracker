@@ -21,19 +21,5 @@ class UserSeeder extends Seeder
             'password' => Hash::make('1234'),
             'role' => 1
         ]);
-
-        User::create([
-            'name' => 'Sergi Roberto',
-            'email' => 'sergi@gmail.com',
-            'password' => Hash::make('1234'),
-            'role' => 2
-        ]);
-
-        User::create([
-            'name' => 'Gerard Pique',
-            'email' => 'pique@gmail.com',
-            'password' => Hash::make('1234'),
-            'role' => 2
-        ]);
     }
 }

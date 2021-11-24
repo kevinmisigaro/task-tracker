@@ -17,7 +17,7 @@ class AuthController extends Controller
             return redirect()->intended('dashboard');
         }
 
-        $session->flash('error', 'Please enter correct credentials');
+        session()->flash('error', 'Please enter correct credentials');
 
         return \redirect()->back();
     }
