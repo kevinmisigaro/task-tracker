@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +20,27 @@ use App\Http\Controllers\TaskController;
 
 Route::get('/', function(){
     return view('login');
-});
+})->name('login');
 
 Route::post('loginUser',[AuthController::class, 'login']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/employees', [UserController::class, 'index']);
-    Route::get('/tasks',[TaskController::class,'index']);
+
+    Route::prefix('employees')->group(function(){
+        Route::get('/', [UserController::class, 'index']);
+        Route::post('store', [UserController::class, 'store']);   
+    });
+
+    Route::prefix('tasks')->group(function(){
+        Route::get('/',[TaskController::class,'index']);
+        Route::post('store', [TaskController::class, 'store']);   
+    });
+
+    Route::prefix('departments')->group(function(){
+        Route::get('/',[DepartmentController::class,'index']);
+        Route::post('store', [DepartmentController::class, 'store']);   
+    });
+
     Route::get('/logout',[AuthController::class, 'logout']);
 });

@@ -8,6 +8,7 @@ use App\Models\Task;
 use App\Models\Department;
 use App\Models\DepartmentUser;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {

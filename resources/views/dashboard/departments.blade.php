@@ -19,13 +19,13 @@
     @endif
     
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Employees</h1>
+    <h1 class="h3 mb-2 text-gray-800">Departments</h1>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
         <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">
-            Add new employee
+            Create department
         </button>
 
         <!-- Modal -->
@@ -34,37 +34,23 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="addModalLabel">
-              Add new employee
+              Create new department
           </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <form action="/employees/store" method="post">
+            <form action="/departments/store" method="post">
                 @csrf
                 <div class="form-group mb-4">
-                    <label for="">Full name</label>
+                    <label for="">Department name</label>
                     <input type="text" autocomplete="off" name="name" class="form-control">
                 </div>
-                <div class="form-group mb-4">
-                    <label for="">Email</label>
-                    <input type="email" autocomplete="off" name="email" class="form-control">
-                </div>
-                <div class="form-group mb-4">
-                    <label for="">Department</label>
-                    <select name="department" class="form-control">
-                        <option value="" selected disabled>Select department</option>
-                        @foreach ($departments as $item)
-                            <option value="{{ $item->id }}">
-                                {{ $item->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
+                
                 <div class="form-group mb-2">
                     <button type="submit" class="btn btn-success">
-                        Submit
+                        Create department
                     </button>
                 </div>
             </form>
@@ -81,9 +67,7 @@
               <tr>
                 <th>S/N</th>
                 <th>Name</th>
-                <th>Pending tasks</th>
-                <th>Inprogress tasks</th>
-                <th>Completed tasks</th>
+                <th>Employees</th>
                 <th></th>
               </tr>
             </thead>
@@ -91,38 +75,21 @@
               <tr>
                 <th>S/N</th>
                 <th>Name</th>
-                <th>Overdue tasks</th>
-                <th>Inprogress tasks</th>
-                <th>Completed tasks</th>
+                <th>Employees</th>
                 <th></th>
               </tr>
             </tfoot>
             <tbody>
-              @foreach ($employees as $employee)
+              @foreach ($departments as $department)
                   <tr>
                       <td>
                           {{ $loop->iteration }}
                       </td>
                       <td>
-                          {{ $employee->name }}
+                          {{ $department->name }}
                       </td>
                       <td>
-                          {{ count(\App\Models\Task::where([
-                            'status' =>  2,
-                            'user_id' => $employee->id
-                            ])->get()) }}
-                      </td>
-                      <td>
-                        {{ count(\App\Models\Task::where([
-                            'status' =>  1,
-                            'user_id' => $employee->id
-                            ])->get()) }}
-                      </td>
-                      <td>
-                        {{ count(\App\Models\Task::where([
-                            'status' =>  3,
-                            'user_id' => $employee->id
-                            ])->get()) }}
+                          {{ $department->users_count }}
                       </td>
                       <td></td>
                   </tr>
