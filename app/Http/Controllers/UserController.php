@@ -9,6 +9,7 @@ use App\Models\Department;
 use App\Models\DepartmentUser;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -31,7 +32,7 @@ class UserController extends Controller
         }
 
         $user = User::create([
-            'name' => $request->name,
+            'name' => Str::ucfirst($request->name),
             'email' => $request->email,
             'password' => Hash::make('1234')
         ]);

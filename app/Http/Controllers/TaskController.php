@@ -7,6 +7,8 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use App\Http\Controllers\MailController;
 
 class TaskController extends Controller
 {
@@ -30,7 +32,7 @@ class TaskController extends Controller
         }
 
         Task::create([
-            'task_name' => $request->name,
+            'task_name' => Str::ucfirst($request->name),
             'user_id' => $request->employee,
             'start_date' => $request->startdate,
             'end_date' => $request->enddate,
@@ -51,12 +53,19 @@ class TaskController extends Controller
             return \redirect()->back();
         }
 
-        Task::where('id', $request->task)->update([
+        $task =  Task::where('id', $request->task)->first();
+
+        $task->update([
             'report' => $request->report,
             'status' => 3
         ]);
 
+        //get manager email
+        $email = User::where('role', 1)->pluck('email')->first();
+
         //send mail to manager
+        $mailController = new MailController();
+        $mailController->index(null, Auth::user()->email, $email,'Task completed', Auth::user()->name.' has completed '.$task->task_name.'. Please review.');
 
         session()->flash('success','Task marked as complete');
         return \redirect()->back();

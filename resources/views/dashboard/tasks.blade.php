@@ -150,7 +150,7 @@
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                         data-target="#managerViewModal{{ $task->id }}">Details</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
-                                        data-target="#complete{{ $task->id }}Modal">Review task</a>
+                                        data-target="#review{{ $task->id }}Modal">Review task</a>
                                 </div>
                             </div>
                         </td>
@@ -237,9 +237,9 @@
                                                 </select>
                                             </div>
                                             <div class="col-md-6">
+                                                <input type="date" name="newdate" class="form-control">
                                                 <small>Only add date if task completion is rejected and new date needs
                                                     to be set</small>
-                                                <input type="date" name="newdate" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group mb-3">

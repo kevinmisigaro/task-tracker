@@ -50,6 +50,7 @@
                             <div class="form-group mb-4">
                                 <label for="">Email</label>
                                 <input type="email" autocomplete="off" name="email" class="form-control">
+                                <small>Their passwords will be '1234'. They should reset their passwords once logged in the first time</small>
                             </div>
                             <div class="form-group mb-4">
                                 <label for="">Department</label>

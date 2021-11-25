@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
             'name' => 'Lionel Messi',
             'email' => 'messi@gmail.com',
             'password' => Hash::make('1234'),
-            'role' => 1
+            'role' => 1,
+            'password_updated' => true
         ]);
     }
 }

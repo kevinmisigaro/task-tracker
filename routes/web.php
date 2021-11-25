@@ -27,6 +27,8 @@ Route::post('loginUser',[AuthController::class, 'login']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
 
+    Route::post('passwordUpdate',[AuthController::class,'resetPassword']);
+
     Route::prefix('employees')->group(function(){
         Route::get('/', [UserController::class, 'index']);
         Route::post('store', [UserController::class, 'store']); 
@@ -37,8 +39,8 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('tasks')->group(function(){
         Route::get('/',[TaskController::class,'index']);
         Route::post('store', [TaskController::class, 'store']);   
-        Route::post('review', [TaskController::class, 'employeeCompleteTask']);
-        Route::post('submit', [TaskController::class, 'managerReviewTask']);
+        Route::post('review', [TaskController::class, 'managerReviewTask']);
+        Route::post('submit', [TaskController::class, 'employeeCompleteTask']);
     });
 
     Route::prefix('departments')->group(function(){
