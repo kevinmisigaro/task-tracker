@@ -29,12 +29,16 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('employees')->group(function(){
         Route::get('/', [UserController::class, 'index']);
-        Route::post('store', [UserController::class, 'store']);   
+        Route::post('store', [UserController::class, 'store']); 
+        Route::post('update/{id}', [UserController::class, 'update']);
+        Route::delete('delete/{id}', [UserController::class, 'delete']);   
     });
 
     Route::prefix('tasks')->group(function(){
         Route::get('/',[TaskController::class,'index']);
         Route::post('store', [TaskController::class, 'store']);   
+        Route::post('review', [TaskController::class, 'employeeCompleteTask']);
+        Route::post('submit', [TaskController::class, 'managerReviewTask']);
     });
 
     Route::prefix('departments')->group(function(){

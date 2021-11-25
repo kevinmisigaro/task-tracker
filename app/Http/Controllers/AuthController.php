@@ -14,6 +14,9 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+
+            //check tasks and send mail to manager
+
             return redirect()->intended('dashboard');
         }
 

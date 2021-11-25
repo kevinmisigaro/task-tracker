@@ -45,4 +45,25 @@ class UserController extends Controller
 
         return \redirect()->back();
     }
+
+    public  function update(Request $request, $id){
+        $user = User::where('id', $id)->first();
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+
+        session()->flash('success', 'Employee updated');
+        return redirect()->back();
+    }
+
+    public function delete($id){
+        $user = User::where('id', $id)->first();
+        $user->delete();
+
+        session()->flash('success', 'Employee deleted');
+        return redirect()->back();
+    }
+
 }
