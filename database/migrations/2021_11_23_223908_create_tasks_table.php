@@ -18,10 +18,10 @@ class CreateTasksTable extends Migration
             $table->string('task_name');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->longText('report');
+            $table->longText('report')->nullable();
             $table->date('start_date');
             $table->date('end_date');
-            $table->longText('comment');
+            $table->longText('comment')->nullable();
             $table->integer('status')->default(1); //1-->in progress, 2-->overdue, 3-->complete
             $table->timestamps();
         });
